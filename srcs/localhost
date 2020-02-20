@@ -4,7 +4,7 @@ server {
 
 		server_name www.localhost;
 		root /var/www/localhost/html;
-		index index.php index.html info.php index.htm index.nginx-debian.html;
+		index index.html index.php info.php index.htm index.nginx-debian.html;
 
 		location / {
 		try_files $uri $uri/ =404;
