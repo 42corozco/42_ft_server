@@ -33,6 +33,5 @@ EXPOSE 80
 
 EXPOSE 22
 
-#para ejecutarlo al infinito
 CMD service nginx restart && service mysql start && service php7.3-fpm start && bash
-#CMD service nginx restart && tail -f /dev/null
+
