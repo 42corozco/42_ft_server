@@ -3,7 +3,6 @@ FROM debian:10
 MAINTAINER corozco <corozco@student.42.fr>
 
 ADD /srcs/db.sql /tmp/
-#ADD /srcs/wordpress.sql /tmp/
 
 RUN apt-get update \
 	&& apt-get -y upgrade \
@@ -27,11 +26,13 @@ RUN mkdir -p /var/www/html /var/www/info\
 	&& unzip latest.zip -d /var/www/ \
 	&& tar xvf phpMyAdmin-4.9.0.1-all-languages.tar.gz \
 	&& mv phpMyAdmin-4.9.0.1-all-languages /var/www/phpmyadmin \
+	&& rm latest.zip phpMyAdmin-4.9.0.1-all-languages.tar.gz \
 	&& chown -R $USER:$USER /var/www/* \
 	&& chown -R www-data:www-data /var/www/* \
 	&& chmod -R 755 /var/www/* \
 	&& service mysql start \
 	&& mysql -u root --password= < /tmp/db.sql
+
 
 ADD /srcs/localhost /etc/nginx/sites-available/localhost
 ADD /srcs/info.php /var/www/info/info.php
@@ -41,7 +42,4 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 # Port 80 ouvert
 EXPOSE 80
 
-EXPOSE 22
-
 CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash
-
