@@ -2,12 +2,13 @@ server {
 		listen 80;
 		listen [::]:80;
 
-		server_name www.localhost;
-		root /var/www/localhost/html;
+		server_name localhost www.localhost;
+		root /var/www/;
 		index index.html index.php info.php index.htm index.nginx-debian.html;
 
 		location / {
-		try_files $uri $uri/ =404;
+			autoindex on;
+			try_files $uri $uri/ =404;
 		}
 		location ~ \.php$ {
 		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
