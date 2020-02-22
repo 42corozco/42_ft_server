@@ -3,10 +3,8 @@ FROM debian:10
 MAINTAINER corozco <corozco@student.42.fr>
 
 ADD /srcs/db.sql /tmp/
-ADD /srcs/index.sh /tmp/index.sh
 
 RUN apt-get update \
-	&& alias index='bash /tmp/index.sh' \
 	&& apt-get -y upgrade \
 	&& apt-get install -y \
 		wget \
@@ -14,7 +12,6 @@ RUN apt-get update \
 		mariadb-server \
 		unzip \
 		nano \
-	&& echo "alias index='bash /tmp/index.sh'" >> /root/.bashrc \
 	&& wget https://wordpress.org/latest.zip \
 	&& wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 
@@ -41,9 +38,12 @@ ADD /srcs/localhost /etc/nginx/sites-available/localhost
 ADD /srcs/info.php /var/www/info/info.php
 ADD /srcs/wp-config.php /var/www/wordpress/wp-config.php
 ADD /srcs/config.inc.php /var/www/phpmyadmin/config.inc.php
-RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
+ADD /srcs/index.sh /tmp/index.sh
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/ \
+	&& echo "alias index='bash /tmp/index.sh'" >> /root/.bashrc 
 
 # Port 80 ouvert
 EXPOSE 80
 
-CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash
+CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash /tmp/index.sh $index  && bash
+#CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash;
