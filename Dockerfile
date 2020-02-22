@@ -31,8 +31,8 @@ RUN mkdir -p /var/www/html /var/www/info\
 	&& chown -R www-data:www-data /var/www/* \
 	&& chmod -R 755 /var/www/* \
 	&& service mysql start \
-	&& mysql -u root --password= < /tmp/db.sql
-
+	&& mysql -u root --password= < /tmp/db.sql \
+	&& yes "" | openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 
 ADD /srcs/localhost /etc/nginx/sites-available/localhost
 ADD /srcs/info.php /var/www/info/info.php
