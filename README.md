@@ -5,6 +5,11 @@
 $ status =
     	#finished
 $ note =
-	#?
+		#?
+$ RUN =
+		# Go to ft_server (cd ft_server)
+		# docker build -t corozco .
+		# docker run -e "index=on" -ti -p 80:80 -p 443:443 corozco
+		# https://localhost/
 ```
 
