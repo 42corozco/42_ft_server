@@ -11,7 +11,6 @@ RUN apt-get update \
 		nginx \
 		mariadb-server \
 		unzip \
-		nano \
 	&& wget https://wordpress.org/latest.zip \
 	&& wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 
