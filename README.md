@@ -5,7 +5,7 @@
 $ Status =
 	#finished
 $ Note =
-	#?
+	#100
 $ Development =
 	# -> ft_server (cd ft_server)
 	# docker build -t corozco .
