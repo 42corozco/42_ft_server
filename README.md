@@ -17,6 +17,7 @@ $ Development =
 * [Docs Docker](https://docs.docker.com/)
 * [????](https://beauvais.me/creer-serveur-web-nginx-php7-maria-db-mysql-debian-9-stretch/)
 * [nginx](https://www.linuxbabe.com/debian/install-lemp-stack-debian-10-buster)
+* [SQL script(DB)](https://www.a2hosting.com/kb/developer-corner/mysql/managing-mysql-databases-and-users-from-the-command-line)
 * [WordPress](https://www.linuxbabe.com/ubuntu/install-wordpress-ubuntu-18-04-nginx-mariadb-php7-2-lemp)
 * [Phpadmin](https://www.digitalocean.com/community/tutorials/how-to-install-phpmyadmin-from-source-debian-10)
 * [Ssl](https://www.codeflow.site/fr/article/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-debian-10)
