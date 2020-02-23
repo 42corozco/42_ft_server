@@ -15,11 +15,9 @@ RUN apt-get update \
 	&& wget https://wordpress.org/latest.zip \
 	&& wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 
-#Installing Additional PHP Extensions
 RUN apt-get install -y \
 	php-mysql \
 	php-fpm \
-	php-mysql \
 	php-cli
 
 RUN mkdir -p /var/www/html /var/www/info\
@@ -40,10 +38,12 @@ ADD /srcs/wp-config.php /var/www/wordpress/wp-config.php
 ADD /srcs/config.inc.php /var/www/phpmyadmin/config.inc.php
 ADD /srcs/index.sh /tmp/index.sh
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/ \
-	&& echo "alias index='bash /tmp/index.sh'" >> /root/.bashrc 
+	&& echo "alias index='bash /tmp/index.sh'" >> /root/.bashrc
 
-# Port 80 ouvert
 EXPOSE 80
 
-CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash /tmp/index.sh $index  && bash
-#CMD service nginx restart && service mysql restart && service php7.3-fpm start && bash;
+CMD service nginx restart \
+	&& service mysql start \
+	&& service php7.3-fpm start \
+	&& bash /tmp/index.sh $index \
+	&& bash
