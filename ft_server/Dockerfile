@@ -40,6 +40,7 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/ \
 	&& echo "alias index='bash /tmp/index.sh'" >> /root/.bashrc
 
 EXPOSE 80
+EXPOSE 443
 
 CMD service nginx restart \
 	&& service mysql start \
